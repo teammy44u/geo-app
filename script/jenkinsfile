@@ -1,16 +1,17 @@
-pipeline{
-    agent any
-    tools{
-        maven 'M2_HOME'
+pipeline {
+    tools {
+
     }
-
-
-    stages{
-        stage('maven2'){
+    stages {
+        stage("checkout scm"){
             steps{
-            sh 'mvn clean validate compile install test package'
+                checkout scm
             }
         }
-
+        stage("sonacloud analysis"){
+            steps{
+                sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=teammy44u_geo-app'
+            }
+        }
     }
 }
