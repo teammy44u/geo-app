@@ -23,5 +23,11 @@ pipeline {
                 sh 'mvn clean; mvn validate; mvn compile; mvn install; mvn test; mvn package'
             }
         }
+        stage("upload artifact"){
+            steps{
+                sh 'curl -uadmin:AP8gcgmmset5jeYChTJYDN6XmDd -T target/bio*.jar "http://ec2-34-224-1-60.compute-1.amazonaws.com:8081/artifactory/jfrogrepo/bio_$BUILD_TAG"'
+        
+            }
+        }
     }
 }
