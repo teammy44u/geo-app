@@ -20,7 +20,7 @@ pipeline {
         }
         stage{"build"}{
             steps{
-                sh 'mvn clean validate compile install test package'
+                sh 'mvn clean; mvn validate; mvn compile; mvn install; mvn test; mvn package'
             }
         }
     }
