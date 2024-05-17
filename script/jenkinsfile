@@ -18,5 +18,10 @@ pipeline {
                 
             }
         }
+        stage{"build"}{
+            steps{
+                sh 'mvn clean validate compile install test package'
+            }
+        }
     }
 }
