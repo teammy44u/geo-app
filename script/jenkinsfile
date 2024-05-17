@@ -11,6 +11,7 @@ pipeline {
         }
         stage("sonacloud analysis"){
             steps{
+                withSonarQubeEnv('sonar')
                 sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=teammy44u_geo-app'
             }
         }
